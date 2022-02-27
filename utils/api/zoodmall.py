@@ -27,9 +27,5 @@ class Zoodmall:
                 raise ZoodmallException('Response is not valid')
             else:
                 data: str = await response.text(encoding="utf-8")
-                # d = Response.parse_raw(data)
-                # products = d.result.products
-                # for item in products:
-                #     print(item.imgUrl)
                 return data
 
