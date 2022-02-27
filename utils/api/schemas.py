@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import *
+from typing import List
 
 
 class Installment(BaseModel):
@@ -30,4 +30,3 @@ class Response(BaseModel):
     status: int
     message: str
     result: Products
-
