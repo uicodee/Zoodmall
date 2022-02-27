@@ -1,0 +1,2 @@
+class ZoodmallException(Exception):
+    pass
