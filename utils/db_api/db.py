@@ -48,12 +48,12 @@ async def update_language(user_id: int, language: str) -> None:
     )
 
 
-async def get_language(user_id: int) -> str:
+async def get_language(user_id: int) -> dict:
 
     """
     :param user_id: user's identifier
-    :return: user's selected language
+    :return: user object
     """
 
-    language = (await users.find_one({"user_id": user_id})).get("language")
-    return language
+    data = await users.find_one({"user_id": user_id})
+    return data

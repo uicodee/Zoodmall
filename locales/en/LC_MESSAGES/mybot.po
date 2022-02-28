@@ -1,4 +1,4 @@
-# English translations for PROJECT.
+# Translations template for PROJECT.
 # Copyright (C) 2022 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
@@ -7,30 +7,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-27 23:10+0500\n"
-"PO-Revision-Date: 2022-02-28 20:33+0500\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2022-02-28 22:04+0500\n"
+"PO-Revision-Date: 2022-02-28 22:04+0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: en\n"
-"Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: handlers/users/start.py:15
-msgid "Привет"
-msgstr ""
+#: handlers/users/commands/start.py:14
+msgid "Assalomu Alaykum, xush kelibsiz!"
+msgstr "Hello, welcome!"
 
-#: handlers/users/start.py:16
-msgid "Как дела"
-msgstr ""
+#: keyboards/default/menu.py:12
+msgid "🔍 Qidirish"
+msgstr "🔍 Search"
 
-#: handlers/users/start.py:17
-msgid "Чем занят?"
-msgstr ""
+#: keyboards/default/menu.py:12
+msgid "⭐️ Saqlangan"
+msgstr "⭐️ Saved"
 
-#: handlers/users/start.py:18
-msgid "Что?"
-msgstr ""
-
+#: keyboards/default/menu.py:12
+msgid "⚙️ Sozlamalar"
+msgstr "⚙️ Settings"

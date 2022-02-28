@@ -1,14 +1,15 @@
 from aiogram import types
-from aiogram.dispatcher.middlewares import BaseMiddleware
+from aiogram.contrib.middlewares.i18n import I18nMiddleware
+
 from utils.db_api import get_language
 
 
-class Language(BaseMiddleware):
+class ACLMiddleware(I18nMiddleware):
 
-    async def on_process_message(self, message: types.Message, data: dict):
-        language = await get_language(user_id=message.from_user.id)
-        data["language"] = language
-
-    async def on_process_callback_query(self, callback_query: types.CallbackQuery, data: dict):
-        language = await get_language(user_id=callback_query.from_user.id)
-        data["language"] = language
+    async def get_user_locale(self, action, args):
+        user = types.User.get_current()
+        data = await get_language(user_id=user.id)
+        if data:
+            return data['language']
+        else:
+            return user.locale
