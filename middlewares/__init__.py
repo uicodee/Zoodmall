@@ -5,4 +5,4 @@ from .language import Language
 
 if __name__ == "middlewares":
     dp.middleware.setup(ThrottlingMiddleware())
-    dp.middleware.setup(Language())
+    # dp.middleware.setup(Language())
