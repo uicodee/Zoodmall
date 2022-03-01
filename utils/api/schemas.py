@@ -21,8 +21,16 @@ class Data(BaseModel):
     totalLocalPrice: int
 
 
+class Pagination(BaseModel):
+    page: int
+    limit: int
+    totalCount: int
+    totalPage: int
+
+
 class Products(BaseModel):
     products: List[Data]
+    pagination: Pagination
 
 
 class Response(BaseModel):

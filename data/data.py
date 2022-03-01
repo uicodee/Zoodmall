@@ -9,3 +9,8 @@ languages = {
 welcome = "Здравствуйте, выберите язык\n" \
           "Assalomu Alaykum, tilni tanlang\n" \
           "Hello, choose a language\n"
+
+
+buttons = {
+    'menu': ['🔍 Qidirish', '⭐️ Saqlangan', '⚙️ Sozlamalar']
+}

@@ -27,5 +27,6 @@ class Zoodmall:
                 raise ZoodmallException('Response is not valid')
             else:
                 data: str = await response.text(encoding="utf-8")
+                print(data)
                 return data
 

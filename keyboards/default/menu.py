@@ -3,6 +3,8 @@ from aiogram import types
 from aiogram.contrib.middlewares.i18n import I18nMiddleware
 from aiogram.types import ReplyKeyboardMarkup
 
+from data.data import buttons
+
 
 def menu(_: I18nMiddleware, **kwargs) -> types.ReplyKeyboardMarkup:
     keyboard: ReplyKeyboardMarkup = types.ReplyKeyboardMarkup(
@@ -10,8 +12,7 @@ def menu(_: I18nMiddleware, **kwargs) -> types.ReplyKeyboardMarkup:
         one_time_keyboard=False,
         resize_keyboard=True
     )
-    data = ['🔍 Qidirish', '⭐️ Saqlangan', '⚙️ Sozlamalar']
-    for item in data:
+    for item in buttons['menu']:
         keyboard.insert(
             types.KeyboardButton(text=_(item, locale=kwargs.get('locale')))
         )
