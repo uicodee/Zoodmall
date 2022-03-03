@@ -1,5 +1,3 @@
-from loader import _
-
 languages = {
     'Русский': 'ru',
     'O\'zbek': 'uz',

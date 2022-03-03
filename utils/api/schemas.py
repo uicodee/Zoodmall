@@ -41,18 +41,20 @@ class Specifics(BaseModel):
 
 
 class DetailProduct(BaseModel):
+    name: str
     price: float
     defaultPrice: float
     specifics: List[Specifics]
     description: str
-    installmentsInfo: Installment = None
+    productImages: List
+    # installmentsInfo: Installment = None
 
 
 class Result(BaseModel):
     Product: DetailProduct
 
 
-class Detail:
+class Detail(BaseModel):
     success: bool
     status: int
     message: str

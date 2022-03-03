@@ -5,13 +5,12 @@ from .zoodmall_exception import ZoodmallException
 
 class Zoodmall:
 
-    def __init__(self, limit: int, language: str):
+    def __init__(self, language: str):
         self.data = {
             'x-lang': language.lower(),
             'x-marketcode': 'UZ'
         }
         self.session = aiohttp.ClientSession(headers=self.data)
-        self.limit = limit
 
     async def close_session(self):
         await self.session.close()
@@ -24,15 +23,15 @@ class Zoodmall:
         else:
             return False
 
-    async def get_products(self, request: str, page: int):
+    async def get_products(self, request: str, page: int, limit: int):
         async with self.session.get(
-                url=host + f"/list?deviceType=web&nocache=true&limit={self.limit}&categoryId=0&nameLike={request}&page={page}&sort=1"
+                url=host + f"/list?deviceType=web&nocache=true&limit={limit}&categoryId=0&nameLike={request}&page={page}&sort=1"
         ) as response:
             if await self._check_response(response=response) is False:
                 raise ZoodmallException('Response is not valid')
             else:
                 data: str = await response.text(encoding="utf-8")
-                await self.session.close()
+                await self.close_session()
                 return data
 
     async def get_details(self, product_id: int):
@@ -41,5 +40,5 @@ class Zoodmall:
                 raise ZoodmallException('Response is not valid')
             else:
                 data: str = await response.text(encoding="utf-8")
-                await self.session.close()
+                await self.close_session()
                 return data

@@ -12,10 +12,9 @@ from keyboards.inline import pagination
 async def get_name(message: types.Message, state: FSMContext):
     msg = await message.answer(text="⏳")
     zoodmall = Zoodmall(
-        limit=10,
         language=(await get_language(user_id=message.from_user.id)).get('language')
     )
-    data: Response = Response.parse_raw(await zoodmall.get_products(request=message.text, page=1))
+    data: Response = Response.parse_raw(await zoodmall.get_products(request=message.text, page=1, limit=10))
     names = ""
     d = []
     for index, item in enumerate(data.result.products):
