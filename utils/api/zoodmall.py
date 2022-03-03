@@ -11,7 +11,10 @@ class Zoodmall:
             'x-marketcode': 'UZ'
         }
         self.session = aiohttp.ClientSession(headers=self.data)
-        self.host = host + f"?deviceType=web&nocache=true&limit={limit}"
+        self.limit = limit
+
+    async def close_session(self):
+        await self.session.close()
 
     @staticmethod
     async def _check_response(response: aiohttp.ClientResponse):
@@ -22,11 +25,21 @@ class Zoodmall:
             return False
 
     async def get_products(self, request: str, page: int):
-        async with self.session.get(url=self.host + f"&categoryId=0&nameLike={request}&page={page}&sort=1") as response:
+        async with self.session.get(
+                url=host + f"/list?deviceType=web&nocache=true&limit={self.limit}&categoryId=0&nameLike={request}&page={page}&sort=1"
+        ) as response:
             if await self._check_response(response=response) is False:
                 raise ZoodmallException('Response is not valid')
             else:
                 data: str = await response.text(encoding="utf-8")
-                print(data)
+                await self.session.close()
                 return data
 
+    async def get_details(self, product_id: int):
+        async with self.session.get(url=host + f"/detail?productId={product_id}") as response:
+            if await self._check_response(response=response) is False:
+                raise ZoodmallException('Response is not valid')
+            else:
+                data: str = await response.text(encoding="utf-8")
+                await self.session.close()
+                return data
