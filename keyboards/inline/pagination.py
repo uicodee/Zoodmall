@@ -10,7 +10,9 @@ def pagination(data: typing.List[typing.Dict], max_pages: int, current_page: int
             keyboard.insert(
                 types.InlineKeyboardButton(text=i, callback_data=select.new(product_id=j))
             )
-    if current_page == max_pages:
+    if max_pages == 1 or max_pages == 0:
+        pass
+    elif current_page == max_pages:
         keyboard.add(
             types.InlineKeyboardButton(text="⬅️", callback_data=paginator.new(page=current_page, location="prev"))
         )
