@@ -5,6 +5,7 @@ from utils.api import Zoodmall
 from utils.db_api import get_language
 from utils.api import schemas
 from aiogram import md
+from keyboards.inline import operation_keyboard
 
 
 @dp.callback_query_handler(select.filter())
@@ -32,5 +33,6 @@ async def select_handler(query: types.CallbackQuery, callback_data: dict) -> Non
             default_price=result.result.Product.defaultPrice,
             specifics="".join(specific),
             description=result.result.Product.description.replace("<br />", "\n")
-        )
+        ),
+        reply_markup=operation_keyboard(_, product_id=product_id)
     )

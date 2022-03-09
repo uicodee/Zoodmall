@@ -5,6 +5,7 @@ from data import config
 db_client = motor_asyncio.AsyncIOMotorClient(config.MONGO_HOST)
 db = db_client[config.DB_NAME]
 users: motor_asyncio.AsyncIOMotorCollection = db['users']
+favourite: motor_asyncio.AsyncIOMotorCollection = db['favourite']
 
 
 async def new_user(user_id: int, language: str) -> None:
@@ -57,3 +58,18 @@ async def get_language(user_id: int) -> dict:
 
     data = await users.find_one({"user_id": user_id})
     return data
+
+
+async def add_favourite(user_id: int, product_id: int) -> None:
+
+    """
+    :param user_id: user's identifier
+    :param product_id: zoodmall product's identifier
+    :return: None
+    """
+
+    await favourite.insert_one({
+        "user_id": user_id,
+        "product_id": product_id
+    })
+
