@@ -13,9 +13,7 @@ async def select_handler(query: types.CallbackQuery, callback_data: dict) -> Non
     product_id = int(callback_data.get('product_id'))
     zoodmall = Zoodmall(language=language)
     data = await zoodmall.get_details(product_id=product_id)
-    # print(data)
     result = schemas.Detail.parse_raw(data)
-    print(result)
     info = _(
         "📃 Nomi: {name}\n"
         "💰 Xozirgi narxi: {price}\n"
@@ -24,12 +22,11 @@ async def select_handler(query: types.CallbackQuery, callback_data: dict) -> Non
         "🗒 Ta'rif: {description}\n"
     )
     specific = [f"<b>{x.name}</b>: {x.value}\n" for x in result.result.Product.specifics]
-    # print(specific)
     await query.message.edit_text(
         text=info.format(
             name=md.hlink(
                 title=result.result.Product.name,
-                url=result.result.Product.productImages[-2]
+                url=result.result.Product.productImages[0]
             ),
             price=result.result.Product.price,
             default_price=result.result.Product.defaultPrice,

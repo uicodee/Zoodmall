@@ -1,4 +1,3 @@
-import typing
 from aiogram import types
 from aiogram.contrib.middlewares.i18n import I18nMiddleware
 from aiogram.types import ReplyKeyboardMarkup

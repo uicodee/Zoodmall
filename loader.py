@@ -3,7 +3,7 @@ from pathlib import Path
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.contrib.middlewares.i18n import I18nMiddleware
-from motor import motor_asyncio
+
 from data import config
 
 # Prepare bot

@@ -22,8 +22,3 @@ async def bot_start(message: types.Message):
         text=welcome,
         reply_markup=language_markup()
     )
-
-
-
-
-

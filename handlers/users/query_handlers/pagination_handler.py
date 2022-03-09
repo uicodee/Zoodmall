@@ -13,7 +13,6 @@ from utils.db_api import get_language
 @dp.callback_query_handler(paginator.filter())
 async def pagination_handler(query: types.CallbackQuery, callback_data: typing.Dict, state: FSMContext):
     zoodmall = Zoodmall(
-        limit=10,
         language=(await get_language(user_id=query.from_user.id)).get('language')
     )
     request = (await state.get_data()).get('request')
@@ -25,7 +24,7 @@ async def pagination_handler(query: types.CallbackQuery, callback_data: typing.D
     total_page, pages = None, None
     if location == "next":
         current_page = page + 1
-        data: Response = Response.parse_raw(await zoodmall.get_products(request=request, page=current_page))
+        data: Response = Response.parse_raw(await zoodmall.get_products(request=request, page=current_page, limit=10))
         print(data)
         for index, item in enumerate(data.result.products):
             names += f"{item.name}\n"
@@ -35,7 +34,7 @@ async def pagination_handler(query: types.CallbackQuery, callback_data: typing.D
             total_page, pages = data.result.pagination.totalPage, data.result.pagination.page
     elif location == "prev":
         current_page = page - 1
-        data: Response = Response.parse_raw(await zoodmall.get_products(request=request, page=current_page))
+        data: Response = Response.parse_raw(await zoodmall.get_products(request=request, page=current_page, limit=10))
         for index, item in enumerate(data.result.products):
             names += f"{item.name}\n"
             d.append({
